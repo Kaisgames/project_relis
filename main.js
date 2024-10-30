@@ -157,20 +157,7 @@ function displayDailyForecast(forecastData) {
     return acc;
   }, {});
 
-  dailyForecastDiv.innerHTML = Object.entries(dailyData).slice(0, 5).map(([date, dayData]) => {
-    const avgTemp = Math.round(dayData.reduce((sum, item) => sum + item.main.temp, 0) / dayData.length);
-    const mostFrequentWeather = getMostFrequentWeather(dayData);
-    const iconUrl = `https://openweathermap.org/img/wn/${mostFrequentWeather.icon}.png`;
 
-    return `
-      <div class="daily-item" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding: 10px; border: 1px solid #4a90e2; border-radius: 5px; background-color: rgba(255, 255, 255, 0.7);">
-        <span style="color: #4a4a4a; font-weight: bold;">${new Date(date).toLocaleDateString('uk-UA', { weekday: 'short', month: 'short', day: 'numeric' })}</span>
-        <img src="${iconUrl}" alt="Щоденний значок погоди" style="width: 50px; height: 50px;">
-        <span style="color: #4a90e2; font-weight: bold;">${avgTemp}°C</span>
-        <span style="color: #4a4a4a;">${mostFrequentWeather.description}</span>
-      </div>
-    `;
-  }).join('');
 }
 
 function getMostFrequentWeather(dayData) {
